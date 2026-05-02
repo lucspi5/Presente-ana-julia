@@ -6,116 +6,107 @@
     <title>Para Ana Julia</title>
     <style>
         body {
-            /* Aqui chamamos a sua foto de fundo */
             background-image: url('fundo.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-color: #fce4ec; /* Cor de reserva */
-            
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        /* Camada escura opcional para o texto aparecer melhor sobre a foto */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.3); 
-            z-index: -1;
-        }
-
-        .container-envelope {
-            text-align: center;
+        /* TELA 1: A CARTA COM O TEXTO NA FRENTE */
+        #container-inicial {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
             cursor: pointer;
-            z-index: 10;
+            text-align: center;
         }
 
-        .envelope {
-            font-size: 80px;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+        .img-carta-fundo {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
         }
 
-        .texto-clique {
-            color: white;
-            font-weight: bold;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        .texto-sobre-carta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            color: #333; /* Cor escura para ler no papel branco da imagem */
+            font-size: 14px;
+            line-height: 1.3;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            font-style: italic;
         }
 
-        #conteudo-presente {
+        /* TELA 2: SURPRESA CENTRALIZADA (A CARTA SOME) */
+        #surpresa-interna {
             display: none;
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             width: 85%;
-            max-width: 400px;
-            animation: fadeIn 0.8s ease-in;
+            max-width: 380px;
+            animation: surgir 0.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
+        @keyframes surgir {
+            from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        h1 { color: #d81b60; margin-bottom: 15px; }
-        p { color: #333; font-size: 18px; line-height: 1.5; }
-
         .foto-interna {
             width: 100%;
-            border-radius: 15px;
-            margin-top: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
         }
 
         button {
-            background-color: #d81b60;
+            background: #d81b60;
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 20px;
-            font-size: 16px;
             cursor: pointer;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container-envelope" id="carta-inicial" onclick="abrirCarta()">
-        <div class="envelope">✉️</div>
-        <p class="texto-clique">Clique para abrir a sua surpresa, amor</p>
+    <div id="container-inicial" onclick="abrirPresente()">
+        <img src="carta.jpg" class="img-carta-fundo">
+        <div class="texto-sobre-carta">
+            Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
+        </div>
+        <p style="color: white; font-weight: bold; text-shadow: 1px 1px 4px #000;">✨ CLIQUE NA CARTA PARA ABRIR ✨</p>
     </div>
 
-    <div id="conteudo-presente">
-        <h1>Para Ana Julia</h1>
-        <p>Você é a pessoa mais especial da minha vida. Preparei isso com todo carinho para você!</p>
-        
-        <img src="foto_interna.jpg" alt="Ana Julia" class="foto-interna">
-        
+    <div id="surpresa-interna">
+        <h2 style="color: #d81b60;">Para: Ana Julia ❤️</h2>
+        <img src="foto_interna.jpg" class="foto-interna">
+        <p style="color: #444;">Eu te amo mais que tudo nesse mundo!</p>
         <button onclick="window.location.reload()">Ver de novo</button>
     </div>
 
     <audio id="musica" src="musica.mp3"></audio>
 
     <script>
-        function abrirCarta() {
-            // Toca a música
-            const music = document.getElementById('musica');
-            music.play();
-
-            // Faz a carta sumir
-            document.getElementById('carta-inicial').style.display = 'none';
-            
-            // Mostra o conteúdo no centro
-            document.getElementById('conteudo-presente').style.display = 'block';
+        function abrirPresente() {
+            document.getElementById('musica').play();
+            // FAZ A CARTA E O TEXTO SUMIREM
+            document.getElementById('container-inicial').style.display = 'none';
+            // MOSTRA A SURPRESA NO MEIO
+            document.getElementById('surpresa-interna').style.display = 'block';
         }
     </script>
 </body>
