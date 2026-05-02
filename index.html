@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ana Julia</title>
+    <title>Presente Especial</title>
     <style>
         body {
             background-image: url('fundo.jpg');
@@ -15,98 +15,101 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        /* TELA 1: A CARTA COM O TEXTO NA FRENTE */
+        /* TELA 1: A CARTA FECHADA */
         #container-inicial {
-            position: relative;
+            cursor: pointer;
             width: 90%;
             max-width: 400px;
-            cursor: pointer;
             text-align: center;
+            animation: fadeIn 1s ease-in;
         }
 
-        .img-carta-fundo {
+        .img-carta {
             width: 100%;
             border-radius: 15px;
-            display: block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .texto-sobre-carta {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            color: #333; /* Cor escura para ler no papel branco da imagem */
-            font-size: 14px;
-            line-height: 1.3;
-            text-align: center;
-            font-family: 'Georgia', serif;
-            font-style: italic;
-        }
-
-        /* TELA 2: SURPRESA CENTRALIZADA (A CARTA SOME) */
+        /* TELA 2: CONTEÚDO CENTRALIZADO */
         #surpresa-interna {
             display: none;
-            text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             width: 85%;
             max-width: 380px;
-            animation: surgir 0.5s ease-out;
+            max-height: 85vh;
+            overflow-y: auto;
+            text-align: center;
+            animation: surgir 0.6s ease-out;
         }
 
         @keyframes surgir {
-            from { opacity: 0; transform: scale(0.8); }
+            from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        .foto-interna {
+        .tirinha-fotos {
             width: 100%;
             border-radius: 10px;
-            margin: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .texto-mensagem {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-wrap;
+            font-style: italic;
         }
 
         button {
             background: #d81b60;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 25px;
+            border-radius: 25px;
+            margin-top: 20px;
             cursor: pointer;
+            font-size: 16px;
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div id="container-inicial" onclick="abrirPresente()">
-        <img src="carta.jpg" class="img-carta-fundo">
-        <div class="texto-sobre-carta">
-            Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
-        </div>
-        <p style="color: white; font-weight: bold; text-shadow: 1px 1px 4px #000;">✨ CLIQUE NA CARTA PARA ABRIR ✨</p>
+    <div id="container-inicial" onclick="abrir()">
+        <img src="carta.jpg" class="img-carta">
+        <p style="color: white; font-weight: bold; text-shadow: 1px 1px 4px #000; margin-top: 15px;">
+            ✨ CLIQUE NA CARTA PARA ABRIR ✨
+        </p>
     </div>
 
     <div id="surpresa-interna">
-        <h2 style="color: #d81b60;">Para: Ana Julia ❤️</h2>
-        <img src="foto_interna.jpg" class="foto-interna">
-        <p style="color: #444;">Eu te amo mais que tudo nesse mundo!</p>
-        <button onclick="window.location.reload()">Ver de novo</button>
+        <img src="tirinha.jpg" class="tirinha-fotos">
+        
+        <div class="texto-mensagem">
+Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
+        </div>
+        
+        <button onclick="window.location.reload()">Ler de novo</button>
     </div>
 
     <audio id="musica" src="musica.mp3"></audio>
 
     <script>
-        function abrirPresente() {
+        function abrir() {
             document.getElementById('musica').play();
-            // FAZ A CARTA E O TEXTO SUMIREM
             document.getElementById('container-inicial').style.display = 'none';
-            // MOSTRA A SURPRESA NO MEIO
             document.getElementById('surpresa-interna').style.display = 'block';
+            document.getElementById('surpresa-interna').style.display = 'inline-block';
         }
     </script>
 </body>
