@@ -64,7 +64,8 @@
         .item-contador { display: flex; justify-content: space-between; border-bottom: 1px dashed #ffc1e3; }
         .label-contador { font-size: 12px; color: #888; align-self: center; }
         
-        .gif-final { width: 150px; height: auto; margin: 10px auto; display: block; }
+        .gif-meio { width: 150px; height: auto; margin: 10px auto; display: block; }
+        .gif-muito-final { width: 120px; height: auto; margin: 15px auto; display: block; }
 
         .titulo-video { color: #d81b60; font-size: 18px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-transform: lowercase; }
         .frase-timido { color: #d81b60; font-size: 14px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; font-style: italic; }
@@ -124,7 +125,7 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
             <div style="font-size: 11px; color: #d81b60; margin-top: 10px;">Desde: 07/07/2024 às 20:00 ❤️</div>
         </div>
         
-        <img src="animacao.gif" class="gif-final">
+        <img src="animacao.gif" class="gif-meio">
 
         <div class="texto-mensagem">
 Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida e em mil outras...eu sou completamente apaixonado por vc, eu quero conquistar tudo ao seu lado quero te beijar e n te soltar mais, me dsclp por falhas e erros...me dsclp te deixar tão estressada, e me dsclp por n entender tudo de uma vez a minha cabeça n funciona tão bem...por isso n entendo tão bem as coisas e eu sou burro sim, me dsclp msm amor...irei melhorar e tentar entender as coisas cm mais precisão, n qro te perder nunca...vc é td pra mim, td...vc é o amor da mvd e a minha felicidade, n me vejo sem vc amor, vc n tem noção do bem que vc me faz, eu smp vou dá o meu mlr pra cuidar de vc e vou melhorar por vc e pela gente, vc é minha mulher e mãe da minha filha, eu sou grato por vc tds os dias. 🤍
@@ -151,11 +152,14 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
         </div>
 
         <div class="frase-timido">eu gravei esse vídeo todo tímido pra vc KAKAKAKA</div>
+        
         <div class="video-container">
             <video class="video-surpresa" controls>
                 <source src="video3.mp4" type="video/mp4">
             </video>
         </div>
+
+        <img src="gif_final.gif" class="gif-muito-final">
 
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
@@ -181,7 +185,7 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
             }, 600);
         }
 
-        // Lógica atualizada para incluir todos os vídeos (1, 2 e o novo 3)
+        // Lógica para pausar a música quando qualquer vídeo der play
         document.addEventListener('play', function(e){
             if(e.target.tagName === 'VIDEO'){
                 musica.pause();
