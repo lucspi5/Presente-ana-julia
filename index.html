@@ -18,10 +18,12 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            overflow-x: hidden;
         }
-        #container-inicial { text-align: center; width: 90%; max-width: 400px; }
+
+        #container-inicial { text-align: center; width: 90%; max-width: 400px; transition: all 0.5s; }
         .img-carta-fechada { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .btn-abrir { background-color: #ff4081; color: white; border: none; padding: 15px 45px; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-abrir { background-color: #ff4081; color: white; border: none; padding: 15px 45px; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; position: relative; z-index: 1001; }
         
         #surpresa-interna {
             display: none;
@@ -33,10 +35,15 @@
             text-align: center;
             overflow-y: auto;
             max-height: 90vh;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            position: relative;
+            z-index: 10;
         }
+
         .img-tirinha { width: 100%; border-radius: 10px; margin-bottom: 20px; }
         
-        /* ESTILO IGUAL PARA OS DOIS TEXTOS */
+        /* ESTILO DOS TEXTOS (IGUAIS) */
         .texto-mensagem { 
             color: #333; 
             font-size: 16px; 
@@ -59,22 +66,37 @@
         .label-contador { font-size: 12px; color: #888; align-self: center; }
         
         .gif-final { width: 150px; height: auto; margin: 10px auto; display: block; }
-
         .btn-voltar { background: #d81b60; color: white; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
+
+        /* ANIMAÇÃO DE CORAÇÕES */
+        .coracao-clique {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            font-size: 25px;
+            animation: subirESumir 2.5s ease-out forwards;
+        }
+
+        @keyframes subirESumir {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5) rotate(20deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+    
     <div id="container-inicial">
         <img src="carta.jpg" class="img-carta-fechada">
-        <button class="btn-abrir" onclick="abrir()">Abrir carta</button>
+        <button class="btn-abrir" onclick="abrirCarta()">Abrir carta</button>
     </div>
+
     <div id="surpresa-interna">
         <img src="foto_interna.jpg" class="img-tirinha">
         
         <div class="texto-mensagem">
 Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
         </div>
-
+        
         <div class="contador-tempo">
             <div style="font-weight: bold; color: #d81b60; margin-bottom: 10px;">Total do Nosso Amor:</div>
             <div class="numeros-contador">
@@ -93,16 +115,41 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
 
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
+
     <audio id="musica" src="musica.mp3" loop></audio>
+
     <script>
-        function abrir() {
+        function abrirCarta() {
             var audio = document.getElementById('musica');
-            audio.play().catch(function(e) { console.log("Áudio aguardando..."); });
-            document.getElementById('container-inicial').style.display = 'none';
-            document.getElementById('surpresa-interna').style.display = 'block';
-            setInterval(calcularTempo, 60000);
-            calcularTempo();
+            audio.play().catch(e => console.log("Áudio pendente"));
+            
+            // Explosão de corações
+            for (let i = 0; i < 40; i++) {
+                setTimeout(criarCoracao, i * 50);
+            }
+
+            document.getElementById('container-inicial').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('container-inicial').style.display = 'none';
+                const surpresa = document.getElementById('surpresa-interna');
+                surpresa.style.display = 'block';
+                setTimeout(() => { surpresa.style.opacity = '1'; }, 100);
+                setInterval(calcularTempo, 60000);
+                calcularTempo();
+            }, 600);
         }
+
+        function criarCoracao() {
+            const coracao = document.createElement('div');
+            coracao.innerHTML = '❤️';
+            coracao.className = 'coracao-clique';
+            coracao.style.left = Math.random() * 100 + 'vw';
+            coracao.style.bottom = '-10%';
+            coracao.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(coracao);
+            setTimeout(() => { coracao.remove(); }, 3000);
+        }
+
         function calcularTempo() {
             const dataInicio = new Date(2024, 6, 7, 20, 0, 0); 
             const agora = new Date();
