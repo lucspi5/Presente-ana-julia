@@ -7,24 +7,22 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html, body { 
-            height: 100vh; 
-            width: 100vw;
-            overflow: hidden;
-        }
+        html, body { height: 100vh; width: 100vw; overflow-x: hidden; }
 
         body {
-            /* MUDANÇA CRÍTICA: Usei background direto e tirei a cor rosa de reserva */
-            background: url('fundo.jpg') no-repeat center center fixed;
-            background-size: cover !important;
-            
+            /* SEU FUNDO DE NUVENS E FLORES */
+            background-image: url('fundo.jpg') !important;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
         }
 
-        /* TELA 1: CARTA E BOTÃO ROSA */
+        /* TELA 1: CARTA FECHADA */
         #container-inicial {
             text-align: center;
             width: 90%;
@@ -48,7 +46,6 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
         }
 
         /* TELA 2: CONTEÚDO INTERNO */
@@ -69,8 +66,7 @@
         .img-tirinha {
             width: 100%;
             border-radius: 10px;
-            display: block;
-            margin: 0 auto 20px auto;
+            margin-bottom: 20px;
         }
 
         .texto-mensagem {
@@ -80,6 +76,35 @@
             text-align: left;
             white-space: pre-wrap;
             font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* CONTADOR */
+        .contador-tempo {
+            background: #fff0f5;
+            border-radius: 15px;
+            padding: 15px;
+            border: 2px solid #ff80ab;
+            margin-bottom: 15px;
+        }
+
+        .numeros-contador {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4081;
+        }
+
+        /* ESTILO DO GIF DA HELLO KITTY */
+        .gif-final {
+            width: 150px; /* Ajustei o tamanho para ficar bem visível */
+            height: auto;
+            margin: 10px auto;
+            display: block;
+            /* Garante que o fundo preto do arquivo não apareça se o GIF for transparente */
+            background: transparent; 
         }
 
         .btn-voltar {
@@ -88,7 +113,7 @@
             border: none;
             padding: 10px 25px;
             border-radius: 20px;
-            margin-top: 25px;
+            margin-top: 15px;
             cursor: pointer;
         }
     </style>
@@ -102,10 +127,23 @@
     </div>
 
     <div id="surpresa-interna">
-        <img src="foto_interna.jpg" class="img-tirinha" alt="Nossa Foto">
+        <img src="foto_interna.jpg" class="img-tirinha">
+        
         <div class="texto-mensagem">
 Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
         </div>
+
+        <div class="contador-tempo">
+            <div style="font-weight: bold; color: #d81b60; margin-bottom: 10px;">Juntos há:</div>
+            <div class="numeros-contador">
+                <div><span id="dias">0</span><div style="font-size: 12px; color: #888;">DIAS</div></div>
+                <div><span id="meses">0</span><div style="font-size: 12px; color: #888;">MESES</div></div>
+            </div>
+            <div style="font-size: 11px; color: #d81b60; margin-top: 5px;">Desde: 07/07/2024 às 20:00 ❤️</div>
+        </div>
+
+        <img src="animacao.gif" class="gif-final" alt="Hello Kitty Love">
+        
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
 
@@ -117,6 +155,19 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
             audio.play().catch(function(e) { console.log("Áudio aguardando..."); });
             document.getElementById('container-inicial').style.display = 'none';
             document.getElementById('surpresa-interna').style.display = 'block';
+            calcularTempo();
+        }
+
+        function calcularTempo() {
+            const dataInicio = new Date(2024, 6, 7, 20, 0, 0); 
+            const agora = new Date();
+            let meses = (agora.getFullYear() - dataInicio.getFullYear()) * 12;
+            meses += agora.getMonth() - dataInicio.getMonth();
+            if (agora < new Date(agora.getFullYear(), agora.getMonth(), dataInicio.getDate(), 20, 0, 0)) meses--;
+            const diferenca = agora - dataInicio;
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            document.getElementById('dias').innerText = dias;
+            document.getElementById('meses').innerText = meses;
         }
     </script>
 </body>
