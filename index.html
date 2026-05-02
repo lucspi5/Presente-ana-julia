@@ -6,133 +6,68 @@
     <title>Para Minha Princesa</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html, body { height: 100vh; width: 100vw; overflow-x: hidden; }
-
         body {
             background-image: url('fundo.jpg') !important;
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
-
-        #container-inicial {
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            z-index: 10;
-        }
-
-        .img-carta-fechada {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-bottom: 25px;
-        }
-
-        .btn-abrir {
-            background-color: #ff4081; 
-            color: white;
-            border: none;
-            padding: 15px 45px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        #container-inicial { text-align: center; width: 90%; max-width: 400px; }
+        .img-carta-fechada { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .btn-abrir { background-color: #ff4081; color: white; border: none; padding: 15px 45px; border-radius: 30px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        
         #surpresa-interna {
             display: none;
             background: rgba(255, 255, 255, 0.98);
             padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
             width: 85%;
             max-width: 380px;
-            max-height: 85vh;
-            overflow-y: auto;
             text-align: center;
-            z-index: 10;
+            overflow-y: auto;
+            max-height: 90vh;
         }
-
-        .img-tirinha {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .img-tirinha { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+        
+        /* ESTILO IGUAL PARA OS DOIS TEXTOS */
+        .texto-mensagem { 
+            color: #333; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            text-align: left; 
+            white-space: pre-wrap; 
+            font-style: italic; 
+            margin-bottom: 20px; 
         }
-
-        .texto-mensagem {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.6;
-            text-align: left;
-            white-space: pre-wrap;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
+        
         .contador-tempo {
             background: #fff0f5;
             border-radius: 15px;
             padding: 15px;
             border: 2px solid #ff80ab;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+        .numeros-contador { display: flex; flex-direction: column; gap: 8px; font-size: 22px; font-weight: bold; color: #ff4081; }
+        .item-contador { display: flex; justify-content: space-between; border-bottom: 1px dashed #ffc1e3; }
+        .label-contador { font-size: 12px; color: #888; align-self: center; }
+        
+        .gif-final { width: 150px; height: auto; margin: 10px auto; display: block; }
 
-        .numeros-contador {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff4081;
-        }
-
-        .item-contador {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            border-bottom: 1px dashed #ffc1e3;
-        }
-
-        .label-contador {
-            font-size: 12px;
-            color: #888;
-            align-self: center;
-        }
-
-        .gif-final {
-            width: 150px;
-            height: auto;
-            margin: 10px auto;
-            display: block;
-            background: transparent; 
-        }
-
-        .btn-voltar {
-            background: #d81b60;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
+        .btn-voltar { background: #d81b60; color: white; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
     </style>
 </head>
 <body>
-
     <div id="container-inicial">
         <img src="carta.jpg" class="img-carta-fechada">
-        <br>
         <button class="btn-abrir" onclick="abrir()">Abrir carta</button>
     </div>
-
     <div id="surpresa-interna">
         <img src="foto_interna.jpg" class="img-tirinha">
         
@@ -143,53 +78,38 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
         <div class="contador-tempo">
             <div style="font-weight: bold; color: #d81b60; margin-bottom: 10px;">Total do Nosso Amor:</div>
             <div class="numeros-contador">
-                <div class="item-contador">
-                    <span id="dias">669</span>
-                    <span class="label-contador">DIAS</span>
-                </div>
-                <div class="item-contador">
-                    <span id="horas">16.056</span>
-                    <span class="label-contador">HORAS</span>
-                </div>
-                <div class="item-contador">
-                    <span id="minutos">963.360</span>
-                    <span class="label-contador">MINUTOS</span>
-                </div>
+                <div class="item-contador"><span id="dias">669</span><span class="label-contador">DIAS</span></div>
+                <div class="item-contador"><span id="horas">0</span><span class="label-contador">HORAS</span></div>
+                <div class="item-contador"><span id="minutos">0</span><span class="label-contador">MINUTOS</span></div>
             </div>
             <div style="font-size: 11px; color: #d81b60; margin-top: 10px;">Desde: 07/07/2024 às 20:00 ❤️</div>
         </div>
-
-        <img src="animacao.gif" class="gif-final" alt="Hello Kitty Love">
         
+        <img src="animacao.gif" class="gif-final">
+
+        <div class="texto-mensagem">
+Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida e em mil outras...eu sou completamente apaixonado por vc, eu quero conquistar tudo ao seu lado quero te beijar e n te soltar mais, me dsclp por falhas e erros...me dsclp te deixar tão estressada, e me dsclp por n entender tudo de uma vez a minha cabeça n funciona tão bem...por isso n entendo tão bem as coisas e eu sou burro sim, me dsclp msm amor...irei melhorar e tentar entender as coisas cm mais precisão, n qro te perder nunca...vc é td pra mim, td...vc é o amor da mvd e a minha felicidade, n me vejo sem vc amor, vc n tem noção do bem que vc me faz, eu smp vou dá o meu mlr pra cuidar de vc e vou melhorar por vc e pela gente, vc é minha mulher e mãe da minha filha, eu sou grato por vc tds os dias. 🤍
+        </div>
+
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
-
     <audio id="musica" src="musica.mp3" loop></audio>
-
     <script>
         function abrir() {
             var audio = document.getElementById('musica');
             audio.play().catch(function(e) { console.log("Áudio aguardando..."); });
             document.getElementById('container-inicial').style.display = 'none';
             document.getElementById('surpresa-interna').style.display = 'block';
-            
-            setInterval(calcularTempo, 60000); // Atualiza a cada minuto
+            setInterval(calcularTempo, 60000);
             calcularTempo();
         }
-
         function calcularTempo() {
             const dataInicio = new Date(2024, 6, 7, 20, 0, 0); 
             const agora = new Date();
-            const diferenca = agora - dataInicio;
-
-            const dias = Math.max(669, Math.floor(diferenca / (1000 * 60 * 60 * 24)));
-            const horasTotais = Math.floor(diferenca / (1000 * 60 * 60));
-            const minutosTotais = Math.floor(diferenca / (1000 * 60));
-
-            // Formata os números com ponto (ex: 16.056)
-            document.getElementById('dias').innerText = dias.toLocaleString('pt-BR');
-            document.getElementById('horas').innerText = horasTotais.toLocaleString('pt-BR');
-            document.getElementById('minutos').innerText = minutosTotais.toLocaleString('pt-BR');
+            const dif = agora - dataInicio;
+            document.getElementById('dias').innerText = Math.max(669, Math.floor(dif/(1000*60*60*24))).toLocaleString('pt-BR');
+            document.getElementById('horas').innerText = Math.floor(dif/(1000*60*60)).toLocaleString('pt-BR');
+            document.getElementById('minutos').innerText = Math.floor(dif/(1000*60)).toLocaleString('pt-BR');
         }
     </script>
 </body>
