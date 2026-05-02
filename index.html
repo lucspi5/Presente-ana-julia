@@ -5,37 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Minha Princesa</title>
     <style>
-        /* RESET TOTAL PARA O FUNDO APARECER */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html, body { 
-            height: 100%; 
-            width: 100%;
+            height: 100vh; 
+            width: 100vw;
+            overflow: hidden;
         }
 
         body {
-            /* CONFIGURAÇÃO FORÇADA DO fundo.jpg */
-            background-image: url('fundo.jpg') !important;
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-color: #fce4ec; /* Cor reserva se a imagem falhar */
+            /* MUDANÇA CRÍTICA: Usei background direto e tirei a cor rosa de reserva */
+            background: url('fundo.jpg') no-repeat center center fixed;
+            background-size: cover !important;
             
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Camada de brilho para destacar o conteúdo */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.1); 
-            z-index: 1;
-            pointer-events: none;
         }
 
         /* TELA 1: CARTA E BOTÃO ROSA */
@@ -44,7 +30,6 @@
             width: 90%;
             max-width: 400px;
             z-index: 10;
-            position: relative;
         }
 
         .img-carta-fechada {
@@ -54,7 +39,6 @@
             margin-bottom: 25px;
         }
 
-        /* BOTÃO ROSA IGUAL AO SEU PRINT */
         .btn-abrir {
             background-color: #ff4081; 
             color: white;
@@ -65,10 +49,7 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
-            transition: 0.3s;
         }
-
-        .btn-abrir:active { transform: scale(0.95); }
 
         /* TELA 2: CONTEÚDO INTERNO */
         #surpresa-interna {
@@ -83,7 +64,6 @@
             overflow-y: auto;
             text-align: center;
             z-index: 10;
-            position: relative;
         }
 
         .img-tirinha {
@@ -114,7 +94,6 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
 
     <div id="container-inicial">
         <img src="carta.jpg" class="img-carta-fechada">
@@ -124,11 +103,9 @@
 
     <div id="surpresa-interna">
         <img src="foto_interna.jpg" class="img-tirinha" alt="Nossa Foto">
-        
         <div class="texto-mensagem">
 Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
         </div>
-        
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
 
@@ -138,7 +115,6 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
         function abrir() {
             var audio = document.getElementById('musica');
             audio.play().catch(function(e) { console.log("Áudio aguardando..."); });
-            
             document.getElementById('container-inicial').style.display = 'none';
             document.getElementById('surpresa-interna').style.display = 'block';
         }
