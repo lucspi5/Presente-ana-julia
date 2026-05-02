@@ -1,36 +1,28 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Minha Princesa</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; }
+        body, html { height: 100%; margin: 0; padding: 0; }
 
         body {
-            /* FUNDO CONFIGURADO PARA APARECER */
+            /* FUNDO CONFIGURADO */
             background-image: url('fundo.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-color: #fce4ec;
-            
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
         }
 
-        /* Camada para destacar o conteúdo */
+        /* Camada para destacar o conteúdo sobre o fundo */
         body::before {
             content: "";
             position: fixed;
@@ -51,12 +43,12 @@
             width: 100%;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* BOTÃO ROSA DE ABRIR */
+        /* BOTÃO ROSA "ABRIR CARTA" */
         .btn-abrir {
-            background-color: #ff4081; /* Rosa vibrante */
+            background-color: #ff4081; 
             color: white;
             border: none;
             padding: 15px 40px;
@@ -65,15 +57,12 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
+            transition: transform 0.2s;
         }
 
-        .btn-abrir:hover {
-            background-color: #f50057;
-            transform: scale(1.05);
-        }
+        .btn-abrir:active { transform: scale(0.95); }
 
-        /* TELA 2: SURPRESA CENTRALIZADA */
+        /* TELA 2: SURPRESA (CONTEÚDO INTERNO) */
         #surpresa-interna {
             display: none;
             background: rgba(255, 255, 255, 0.98);
@@ -88,6 +77,7 @@
             z-index: 10;
         }
 
+        /* IMAGEM DA TIRINHA - NOME CORRIGIDO */
         .img-tirinha {
             width: 100%;
             border-radius: 10px;
@@ -109,7 +99,7 @@
             background: #d81b60;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 20px;
             margin-top: 25px;
             cursor: pointer;
@@ -125,7 +115,7 @@
     </div>
 
     <div id="surpresa-interna">
-        <img src="tirinha.jpg" class="img-tirinha" alt="Nossa Tirinha">
+        <img src="foto_interna.jpg" class="img-tirinha" alt="Nossa História">
         
         <div class="texto-mensagem">
 Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
