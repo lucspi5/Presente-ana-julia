@@ -86,11 +86,24 @@
 
         .numeros-contador {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column;
+            gap: 10px;
             font-size: 24px;
             font-weight: bold;
             color: #ff4081;
+        }
+
+        .item-contador {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-bottom: 1px dashed #ffc1e3;
+        }
+
+        .label-contador {
+            font-size: 12px;
+            color: #888;
+            align-self: center;
         }
 
         .gif-final {
@@ -128,12 +141,22 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
         </div>
 
         <div class="contador-tempo">
-            <div style="font-weight: bold; color: #d81b60; margin-bottom: 10px;">Juntos há:</div>
+            <div style="font-weight: bold; color: #d81b60; margin-bottom: 10px;">Total do Nosso Amor:</div>
             <div class="numeros-contador">
-                <div><span id="dias">0</span><div style="font-size: 12px; color: #888;">DIAS</div></div>
-                <div><span id="meses">0</span><div style="font-size: 12px; color: #888;">MESES</div></div>
+                <div class="item-contador">
+                    <span id="dias">669</span>
+                    <span class="label-contador">DIAS</span>
+                </div>
+                <div class="item-contador">
+                    <span id="horas">16.056</span>
+                    <span class="label-contador">HORAS</span>
+                </div>
+                <div class="item-contador">
+                    <span id="minutos">963.360</span>
+                    <span class="label-contador">MINUTOS</span>
+                </div>
             </div>
-            <div style="font-size: 11px; color: #d81b60; margin-top: 5px;">Desde: 07/07/2024 às 20:00 ❤️</div>
+            <div style="font-size: 11px; color: #d81b60; margin-top: 10px;">Desde: 07/07/2024 às 20:00 ❤️</div>
         </div>
 
         <img src="animacao.gif" class="gif-final" alt="Hello Kitty Love">
@@ -149,19 +172,24 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
             audio.play().catch(function(e) { console.log("Áudio aguardando..."); });
             document.getElementById('container-inicial').style.display = 'none';
             document.getElementById('surpresa-interna').style.display = 'block';
+            
+            setInterval(calcularTempo, 60000); // Atualiza a cada minuto
             calcularTempo();
         }
 
         function calcularTempo() {
             const dataInicio = new Date(2024, 6, 7, 20, 0, 0); 
             const agora = new Date();
-            let meses = (agora.getFullYear() - dataInicio.getFullYear()) * 12;
-            meses += agora.getMonth() - dataInicio.getMonth();
-            if (agora < new Date(agora.getFullYear(), agora.getMonth(), dataInicio.getDate(), 20, 0, 0)) meses--;
             const diferenca = agora - dataInicio;
-            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-            document.getElementById('dias').innerText = dias;
-            document.getElementById('meses').innerText = meses;
+
+            const dias = Math.max(669, Math.floor(diferenca / (1000 * 60 * 60 * 24)));
+            const horasTotais = Math.floor(diferenca / (1000 * 60 * 60));
+            const minutosTotais = Math.floor(diferenca / (1000 * 60));
+
+            // Formata os números com ponto (ex: 16.056)
+            document.getElementById('dias').innerText = dias.toLocaleString('pt-BR');
+            document.getElementById('horas').innerText = horasTotais.toLocaleString('pt-BR');
+            document.getElementById('minutos').innerText = minutosTotais.toLocaleString('pt-BR');
         }
     </script>
 </body>
