@@ -43,7 +43,6 @@
 
         .img-tirinha { width: 100%; border-radius: 10px; margin-bottom: 20px; }
         
-        /* ESTILO DOS TEXTOS (IGUAIS) */
         .texto-mensagem { 
             color: #333; 
             font-size: 16px; 
@@ -66,9 +65,13 @@
         .label-contador { font-size: 12px; color: #888; align-self: center; }
         
         .gif-final { width: 150px; height: auto; margin: 10px auto; display: block; }
+
+        .titulo-video { color: #d81b60; font-size: 18px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-transform: lowercase; }
+        .video-container { width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        video { width: 100%; display: block; background: #000; }
+
         .btn-voltar { background: #d81b60; color: white; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
 
-        /* ANIMAÇÃO DE CORAÇÕES */
         .coracao-clique {
             position: fixed;
             z-index: 1000;
@@ -113,6 +116,20 @@ Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quer
 Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida e em mil outras...eu sou completamente apaixonado por vc, eu quero conquistar tudo ao seu lado quero te beijar e n te soltar mais, me dsclp por falhas e erros...me dsclp te deixar tão estressada, e me dsclp por n entender tudo de uma vez a minha cabeça n funciona tão bem...por isso n entendo tão bem as coisas e eu sou burro sim, me dsclp msm amor...irei melhorar e tentar entender as coisas cm mais precisão, n qro te perder nunca...vc é td pra mim, td...vc é o amor da mvd e a minha felicidade, n me vejo sem vc amor, vc n tem noção do bem que vc me faz, eu smp vou dá o meu mlr pra cuidar de vc e vou melhorar por vc e pela gente, vc é minha mulher e mãe da minha filha, eu sou grato por vc tds os dias. 🤍
         </div>
 
+        <div class="titulo-video">vídeos sobre você</div>
+        
+        <div class="video-container">
+            <video controls>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <video controls>
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+        </div>
+
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
 
@@ -121,9 +138,8 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
     <script>
         function abrirCarta() {
             var audio = document.getElementById('musica');
-            audio.play().catch(e => console.log("Áudio pendente"));
+            audio.play().catch(e => console.log("Áudio aguardando clique"));
             
-            // Explosão de corações
             for (let i = 0; i < 40; i++) {
                 setTimeout(criarCoracao, i * 50);
             }
