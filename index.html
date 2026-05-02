@@ -67,6 +67,8 @@
         .gif-final { width: 150px; height: auto; margin: 10px auto; display: block; }
 
         .titulo-video { color: #d81b60; font-size: 18px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-transform: lowercase; }
+        .frase-timido { color: #d81b60; font-size: 14px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; font-style: italic; }
+        
         .video-container { width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         video { width: 100%; display: block; background: #000; }
 
@@ -148,12 +150,18 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
             <div class="dedicatoria-final">eu te dedico essa música com todo o meu amor</div>
         </div>
 
+        <div class="frase-timido">eu gravei esse vídeo todo tímido pra vc KAKAKAKA</div>
+        <div class="video-container">
+            <video class="video-surpresa" controls>
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+        </div>
+
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
 
     <script>
         const musica = document.getElementById('musica');
-        const videos = document.querySelectorAll('.video-surpresa');
 
         function abrirCarta() {
             musica.play().catch(e => console.log("Interação necessária"));
@@ -173,12 +181,24 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
             }, 600);
         }
 
-        // Pausa a música quando qualquer vídeo der play
-        videos.forEach(video => {
-            video.onplay = () => musica.pause();
-            video.onpause = () => musica.play();
-            video.onended = () => musica.play();
-        });
+        // Lógica atualizada para incluir todos os vídeos (1, 2 e o novo 3)
+        document.addEventListener('play', function(e){
+            if(e.target.tagName === 'VIDEO'){
+                musica.pause();
+            }
+        }, true);
+
+        document.addEventListener('pause', function(e){
+            if(e.target.tagName === 'VIDEO'){
+                musica.play();
+            }
+        }, true);
+
+        document.addEventListener('ended', function(e){
+            if(e.target.tagName === 'VIDEO'){
+                musica.play();
+            }
+        }, true);
 
         function criarCoracao() {
             const coracao = document.createElement('div');
