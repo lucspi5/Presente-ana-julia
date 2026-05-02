@@ -70,7 +70,19 @@
         .video-container { width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         video { width: 100%; display: block; background: #000; }
 
-        .btn-voltar { background: #d81b60; color: white; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
+        .player-musica {
+            background: #fff;
+            border: 2px solid #ff80ab;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(255, 128, 171, 0.2);
+        }
+        .nome-musica { color: #ff4081; font-weight: bold; font-size: 14px; margin-bottom: 8px; display: block; }
+        audio { width: 100%; height: 35px; }
+        .dedicatoria-final { color: #555; font-size: 14px; margin-top: 10px; font-style: italic; }
+
+        .btn-voltar { background: #d81b60; color: white; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 20px; cursor: pointer; }
 
         .coracao-clique {
             position: fixed;
@@ -97,7 +109,7 @@
         <img src="foto_interna.jpg" class="img-tirinha">
         
         <div class="texto-mensagem">
-Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você stand by me na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
+Feliz nosso dia meu amor, o nosso 7...a nossa data que a gente comemora, eu quero logo ter vc cmg pra sempre, ter um canto, um lar...quero ter tudo aquilo que a gente sonha juntos, mês que vem eu só vou querer te beijar e te surpreender, me aprofundar em seus braços e me jogar no seu corpo, dormir em seu colo ou até mesmo chorar nele, dançar com você and i love her na cozinha enquanto vc faz alguma coisa pra gente comer eu sujando seu nariz de doce e a gnt rindo...eu te beijo e falo que te amo...eu quero me casar cm vc, tô disposto a tudo nesse mundo por vc meu amor, quero ter uma cópia nossa correndo pela casa quero você comigo, independente de tudo eu amo vc a cima de qualquer coisa...para sempre vou te amar minha princesa 🤍🤍🤍🤍...feliz nosso 7
         </div>
         
         <div class="contador-tempo">
@@ -130,17 +142,21 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
             </video>
         </div>
 
+        <div class="player-musica">
+            <span class="nome-musica">🎵 Tocando: And I Love Her</span>
+            <audio id="musica" src="musica.mp3" controls loop></audio>
+            <div class="dedicatoria-final">eu te dedico essa música com todo o meu amor</div>
+        </div>
+
         <button class="btn-voltar" onclick="window.location.reload()">Ver de novo</button>
     </div>
-
-    <audio id="musica" src="musica.mp3" loop></audio>
 
     <script>
         const musica = document.getElementById('musica');
         const videos = document.querySelectorAll('.video-surpresa');
 
         function abrirCarta() {
-            musica.play().catch(e => console.log("Áudio aguardando"));
+            musica.play().catch(e => console.log("Interação necessária"));
             
             for (let i = 0; i < 40; i++) {
                 setTimeout(criarCoracao, i * 50);
@@ -157,17 +173,11 @@ Eu quero te amar e te fazer a mulher mais feliz do mundo, vou te amar nessa vida
             }, 600);
         }
 
-        // Controle da música baseado nos vídeos
+        // Pausa a música quando qualquer vídeo der play
         videos.forEach(video => {
-            video.onplay = function() {
-                musica.pause(); // Para a música quando o vídeo começa
-            };
-            video.onpause = function() {
-                musica.play(); // Volta a música quando o vídeo pausa
-            };
-            video.onended = function() {
-                musica.play(); // Volta a música quando o vídeo termina
-            };
+            video.onplay = () => musica.pause();
+            video.onpause = () => musica.play();
+            video.onended = () => musica.play();
         });
 
         function criarCoracao() {
